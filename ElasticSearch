@@ -14,3 +14,26 @@ GET /my_index/posts/_search
         }
     }
 }
+
+# Get Unique Records
+SELECT Distinct created_by
+FROM   posts
+WHERE  tags IS NOT NULL
+
+GET /my_index/posts/_search
+{
+    "query" : {
+        "constant_score" : {
+            "filter" : {
+                "exists" : { "field" : "tags" }
+            }
+        }
+    },	
+     "aggs" : {
+        "uniq_createdby" : {
+            "terms" : {
+              "field" : "created_by"
+            }
+        }
+    }  
+}
