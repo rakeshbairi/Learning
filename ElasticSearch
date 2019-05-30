@@ -1,4 +1,4 @@
-#Exists /Not Null Condition
+# Exists /Not Null Condition
 
 SELECT tags
 FROM   posts
